@@ -7,7 +7,6 @@
 # Date          Author      Rev    Changelog
 # 20180412    Jeffrey Lu     1     Initial
 ###################################################################################
-
 import snipping_tool
 import ocr
 import sys
@@ -22,7 +21,7 @@ image_name          = 'capture' # File name for captured image
 image_extension     = '.png'    # Supports PNG, JPG
 debug_mode          = 0         # 1: ON  0: OFF
 debug_post_proccess = 0         # 1: ON  0: OFF
-debug_timer         = 1         # 1: ON  0: OFF
+debug_timer         = 0         # 1: ON  0: OFF
 debug_image_used    = 0
 countA = 0
 countB = 0
@@ -30,7 +29,6 @@ countC = 0
 
 # Instantiate objects
 searcher = googler.google()
-
 
 #Acquire trivia question image
 if(debug_image_used == 0):

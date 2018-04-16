@@ -1,0 +1,6 @@
+python-qt5
+pillow
+numpy
+opencv-python
+tesseract
+search_google

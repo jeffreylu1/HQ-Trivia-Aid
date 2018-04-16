@@ -60,7 +60,6 @@ class snipping_tool(QtWidgets.QWidget):
         #cv2.waitKey(0)
         #cv2.destroyAllWindows()
 
-
 # if __name__ == '__main__':
     # app = QtWidgets.QApplication(sys.argv)
     # window = snipping_tool()
