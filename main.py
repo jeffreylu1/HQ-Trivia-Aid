@@ -15,13 +15,16 @@ import time
 import googler
 import string
 import re
-
+from PIL import Image
+from PIL import ImageFilter
+from PIL import ImageEnhance
 # Program parameters
-image_name          = 'capture' # File name for captured image
-image_extension     = '.png'    # Supports PNG, JPG
-debug_mode          = 0         # 1: ON  0: OFF
-debug_post_proccess = 0         # 1: ON  0: OFF
-debug_timer         = 0         # 1: ON  0: OFF
+image_name          = 'capture'         # File name for captured image
+image_name_sharp    = 'capture_sharp'   # File name for captured image
+image_extension     = '.png'            # Supports PNG, JPG
+debug_mode          = 0                 # 1: ON  0: OFF
+debug_post_proccess = 0                 # 1: ON  0: OFF
+debug_timer         = 0                 # 1: ON  0: OFF
 debug_image_used    = 0
 countA = 0
 countB = 0
@@ -37,6 +40,11 @@ if(debug_image_used == 0):
     snip_window.show()
     app.aboutToQuit.connect(app.deleteLater)
     app.exec_()
+    
+    # Increase contrast for text
+    image   = Image.open(image_name + image_extension)
+    image = ImageEnhance.Contrast(image).enhance(2.0)
+    image.save(image_name_sharp + image_extension)
 
 if(debug_timer):
     start_time = time.time()
@@ -44,17 +52,17 @@ if(debug_timer):
 # Convert image to text
 while(1):
     try:
-        ocr     = ocr.ocr(image_name, image_extension, debug = debug_mode)
+        ocr     = ocr.ocr(image_name_sharp, image_extension, debug = debug_mode)
         raw_text    = ocr.image2text()
         break
     except:
         print("Try again... Invalid snip")
         app             = QtWidgets.QApplication(sys.argv)
-        snip_window     = snipping_tool.snipping_tool(image_name, image_extension)
+        snip_window     = snipping_tool.snipping_tool(image_name_sharp, image_extension)
         snip_window.show()
         app.aboutToQuit.connect(app.deleteLater)
         app.exec_()
-        ocr     = ocr.ocr(image_name, image_extension, debug = debug_mode)
+        ocr     = ocr.ocr(image_name_, image_extension, debug = debug_mode)
         raw_text    = ocr.image2text()
 
 raw_text = raw_text.split('\n')

@@ -57,6 +57,6 @@ class google:
     def search_google(self, question):
         self.question   = question  # Question to Google
         #print(self.question)
-        self.keyword, self.html = self.fetch_results(self.question, 200, 'en')
+        self.keyword, self.html = self.fetch_results(self.question, 400, 'en')
         self.results = self.parse_results(self.html, self.keyword)
         return self.results
